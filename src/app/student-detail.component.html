@@ -1,0 +1,116 @@
+<div class="container">
+
+  <div class="row" *ngIf="student">
+    <h3>Student detail - {{ student.givenName }} {{ student.familyName }}, {{ student.studentId }} &nbsp;<a
+        routerLink="/students" class="btn btn-default">Back to list</a></h3>
+    <hr>
+    <div class="col-md-8 col-sm-12">
+
+      <dl class="dl-horizontal">
+        <dt>Student ID</dt>
+        <dd>{{ student.studentId }}</dd>
+        <dt>Name</dt>
+        <dd>{{ student.familyName }}, {{ student.givenName }}</dd>
+        <dt>Academic Program</dt>
+        <dd>{{ student.academicProgram }}, level {{ student.academicLevel }}</dd>
+        <dt>Grade Point Average</dt>
+        <dd>{{ student.gpa }}</dd>
+        <hr>
+        <dt>Tentative Courses</dt>
+        <dd>
+
+          <table class="table table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>Term</th>
+                <th>Course</th>
+                <th>Times</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let c of student.coursesSaved'>
+                <td>{{ c.term }}</td>
+                <td>{{ c.courseCode }} - {{ c.section }}</td>
+                <td>
+                  <span *ngIf="c.classMon == 'Y'">Monday - </span>
+                  <span *ngIf="c.classTue == 'Y'">Tuesday - </span>
+                  <span *ngIf="c.classWed == 'Y'">Wednesday - </span>
+                  <span *ngIf="c.classThu == 'Y'">Thursday - </span>
+                  <span *ngIf="c.classFri == 'Y'">Friday - </span>
+                  {{ c.classStart }} to {{ c.classEnd }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </dd>
+        <hr>
+        <dt>Confirmed Courses</dt>
+        <dd>
+
+          <table class="table table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>Term</th>
+                <th>Course</th>
+                <th>Times</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let c of student.coursesConfirmed'>
+                <td>{{ c.term }}</td>
+                <td>{{ c.courseCode }} - {{ c.section }}</td>
+                <td>
+                  <span *ngIf="c.classMon == 'Y'">Monday - </span>
+                  <span *ngIf="c.classTue == 'Y'">Tuesday - </span>
+                  <span *ngIf="c.classWed == 'Y'">Wednesday - </span>
+                  <span *ngIf="c.classThu == 'Y'">Thursday - </span>
+                  <span *ngIf="c.classFri == 'Y'">Friday - </span>
+                  {{ c.classStart }} to {{ c.classEnd }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </dd>
+        <hr>
+        <dt>Course History <br> ({{ student.credits.length }} Credits)</dt>
+        <dd>
+
+          <table class="table table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>Term</th>
+                <th>Grade</th>
+                <th>Course</th>
+                <th>Course Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let s of student.credits'>
+                <td>{{ s.termCompleted }}</td>
+                <td>{{ s.gradeEarned }}</td>
+                <td>{{ s.courseCode }}</td>
+                <td>{{ s.courseName }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </dd>
+      </dl>
+
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>Select courses for next term</p>
+      <a routerLink="/cart/select" class="btn btn-primary">Select Courses</a>
+    </div>
+  </div>
+
+  <div *ngIf="student">
+    <hr>
+    <a routerLink="/students" class="btn btn-default">Back to list</a>
+  </div>
+
+  <div *ngIf="!student">
+    <p>Requested student was not found</p>
+    <p><a routerLink="/students" class="btn btn-default">Back to list</a></p>
+  </div>
+
+</div>

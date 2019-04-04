@@ -1,0 +1,32 @@
+
+  <div class="row">
+  <h3>List of students and their course history</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Student Id <br> and Academic <br> Program</th>
+        <th>Name</th>
+        <th>Birth Date</th>
+        <th>Email</th>
+        <th>Academic <br> Level</th>
+        <th>GPA</th>
+        <th>Course History</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let s of students'>
+        <td>{{ s.studentId }} <br> {{ s.academicProgram }}</td>
+        <td>{{ s.familyName }}, <br> {{ s.givenName }}</td>
+        <td>{{ s.birthDate | date:'longDate' }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.academicLevel }}</td>
+        <td>{{ s.gpa }}</td>
+        <td>{{ s.credits.length }} credits</td>
+        <td>
+          <a routerLink="/students/{{ s._id }}" class="btn btn-default">Select</a>&nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
